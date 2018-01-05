@@ -13,7 +13,6 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
@@ -33,7 +32,15 @@ public class ShellCommandService extends Service {
 
          @Override
         public void handleMessage(Message msg) {
-             //executeteTouch01();
+             handleShell(msg);
+
+
+             // Stop the service using the startId, so that we don't stop
+            // the service in the middle of handling another job
+            stopSelf(msg.arg1);
+        }
+
+        private void handleShell(Message msg) {
             try {
                 int height = Resources.getSystem().getDisplayMetrics().heightPixels;
                 int width = Resources.getSystem().getDisplayMetrics().widthPixels;
@@ -62,11 +69,6 @@ public class ShellCommandService extends Service {
             } catch (InvalidKeyException e) {
                 e.printStackTrace();
             }
-
-
-            // Stop the service using the startId, so that we don't stop
-            // the service in the middle of handling another job
-            stopSelf(msg.arg1);
         }
 
         private void executeteTouch01(View view) {
@@ -116,7 +118,7 @@ public class ShellCommandService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
 
         // For each start request, send a message to start a job and deliver the
         // start ID so we know which request we're stopping when we finish the job
@@ -138,18 +140,7 @@ public class ShellCommandService extends Service {
 
     @Override
     public void onDestroy() {
-        Toast.makeText(this, "service done", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "service done", Toast.LENGTH_SHORT).show();
     }
 
-//    protected void showToast(final String msg){
-//        //gets the main thread
-//        Handler handler = new Handler(Looper.getMainLooper());
-//        handler.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                // run this code in the main thread
-//                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
 }

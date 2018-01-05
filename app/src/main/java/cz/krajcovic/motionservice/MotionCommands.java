@@ -12,7 +12,9 @@ public enum MotionCommands {
     LEFT(2),
     RIGHT(3),
 
-    LONG_CENTER(10);
+    LONG_CENTER(10),
+
+    TEST_L_R(100);
 
     private int id;
 

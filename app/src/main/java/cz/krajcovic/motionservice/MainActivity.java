@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                serviceIntent = new Intent(getApplicationContext(), ShellCommandService.class);
+                serviceIntent = new Intent(getApplicationContext(), InputManagerCommandService.class);
                 serviceIntent.putExtra("motionCommand", MotionCommands.UP.getId());
                 startService(serviceIntent);
             }
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                serviceIntent = new Intent(getApplicationContext(), ShellCommandService.class);
+                serviceIntent = new Intent(getApplicationContext(), InputManagerCommandService.class);
                 serviceIntent.putExtra("motionCommand", MotionCommands.DOWN.getId());
                 startService(serviceIntent);
             }
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                serviceIntent = new Intent(getApplicationContext(), ShellCommandService.class);
+                serviceIntent = new Intent(getApplicationContext(), InputManagerCommandService.class);
                 serviceIntent.putExtra("motionCommand", MotionCommands.LEFT.getId());
                 startService(serviceIntent);
             }
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                serviceIntent = new Intent(getApplicationContext(), ShellCommandService.class);
+                serviceIntent = new Intent(getApplicationContext(), InputManagerCommandService.class);
                 serviceIntent.putExtra("motionCommand", MotionCommands.RIGHT.getId());
                 startService(serviceIntent);
             }
@@ -86,8 +86,26 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                serviceIntent = new Intent(getApplicationContext(), ShellCommandService.class);
+                serviceIntent = new Intent(getApplicationContext(), InputManagerCommandService.class);
                 serviceIntent.putExtra("motionCommand", MotionCommands.LONG_CENTER.getId());
+                startService(serviceIntent);
+            }
+        });
+
+        btn = (Button) findViewById(R.id.btnTestLR);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                // Add your cpu-blocking activity here
+//                try {
+//                    Thread.sleep(5000);
+//                } catch (InterruptedException e) {
+//                    Thread.currentThread().interrupt();
+//                }
+
+                serviceIntent = new Intent(getApplicationContext(), InputManagerCommandService.class);
+                serviceIntent.putExtra("motionCommand", MotionCommands.TEST_L_R.getId());
                 startService(serviceIntent);
             }
         });
